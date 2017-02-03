@@ -95,4 +95,4 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/windows,java,eclipse
 
 target/*
-src/main/java/com/algaworks/main/*
+src/main/java/com/algaworks/pedidovenda/main/*
