@@ -6,13 +6,14 @@
 	<persistence-unit name="pedidovenda" transaction-type="RESOURCE_LOCAL">
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pedidovenda?serverTimezone=UTC" />
-			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://localhost:5432/pedidovenda" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="machado" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL92Dialect" />
 
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>

@@ -11,11 +11,10 @@
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.5</version>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql-jdbc42</artifactId>
+			<version>9.4.1208-atlassian-hosted</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
@@ -59,6 +58,15 @@
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>attlassian</id>
+			<name>Atlassian 3rd-Party Repository</name>
+			<url>https://maven.atlassian.com/3rdparty/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>PedidoVenda</finalName>
