@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Produto implements Serializable {
@@ -16,15 +19,22 @@ public class Produto implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="sku")
+
+	@Column(name = "sku")
 	private String SKU;
+
 	private String nome;
+
 	@ManyToOne
 	private Categoria categoria;
-	private String subcategoria;
-	@Column(name="valor_unitario")
+
+	@Column(name = "valor_unitario")
 	private double valorUnitario;
-	@Column(name="quantidade_estoque")
+
+	@NotNull
+	@Min(0)
+	@Max((long) 9999.99)
+	@Column(name = "quantidade_estoque")
 	private double quantidadeEstoque;
 
 	public Long getId() {
@@ -57,14 +67,6 @@ public class Produto implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public String getSubcategoria() {
-		return subcategoria;
-	}
-
-	public void setSubcategoria(String subcategoria) {
-		this.subcategoria = subcategoria;
 	}
 
 	public double getValorUnitario() {

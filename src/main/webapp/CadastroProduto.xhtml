@@ -14,6 +14,8 @@
 
 		<h1>Cadastrar produto</h1>
 
+
+
 		<h:form id="cadastro-produto-form">
 			<p:toolbar>
 				<p:toolbarGroup>
@@ -26,37 +28,34 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
+			<p:messages autoUpdate="true" closable="true" />
+
 			<p:panelGrid columns="2" style="width: 99%; margin: 0px auto"
 				columnClasses="rotulo, campo">
 				<p:outputLabel value="SKU" for="sku" />
 				<p:inputText id="sku" value="#{produtoBean.produto.SKU}" size="20"
-					maxlength="20" />
+					maxlength="20" required="true" />
 
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{produtoBean.produto.nome}" size="60"
-					maxlength="80" />
+					maxlength="80" required="true" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria">
-					<f:selectItem itemValue="" itemLabel="Selecione uma categoria" />
+				<p:selectOneMenu id="categoria" value="#{produtoBean.categoria}"
+					required="true">
+					<f:selectItem itemLabel="Selecione uma categoria" />
 					<f:selectItems value="#{produtoBean.categorias}" var="categoria"
-						itemValue="#{categoria.id}" itemLabel="#{categoria.descricao}" />
+						itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Subcategoria" for="subcategoria" />
-				<p:selectOneMenu id="subcategoria" label="Selecione a subcategoria">
-					<f:selectItem itemLabel="Selecione a subcategoria" />
-				</p:selectOneMenu>
-
-				<p:outputLabel value="Valor unitário" for="valorUnitario"></p:outputLabel>
+				<p:outputLabel value="Valor unitário" for="valorUnitario" />
 				<p:inputNumber id="valorUnitario"
 					value="#{produtoBean.produto.valorUnitario}" decimalSeparator=","
 					thousandSeparator="." size="10" maxlength="10" />
 
-				<p:outputLabel value="Quantidade estoque" for="quantidadeEstoque"></p:outputLabel>
-				<p:inputNumber id="quantidadeEstoque"
-					value="#{produtoBean.produto.quantidadeEstoque}" size="10"
-					maxValue="10000" decimalSeparator="," thousandSeparator="." />
+				<p:outputLabel value="Quantidade estoque" for="quantidadeEstoque" />
+				<p:inputNumber id="quantidadeEstoque" size="10" maxValue="10000"
+					decimalSeparator="," thousandSeparator="." />
 			</p:panelGrid>
 
 			<p:dataTable id="produto-data-table" var="produto"
@@ -72,11 +71,7 @@
 				</p:column>
 
 				<p:column headerText="Categoria">
-					<h:outputText value="#{produtoBean.produto.categoria}" />
-				</p:column>
-
-				<p:column headerText="Subcategoria">
-					<h:outputText value="#{produto.categoria}" />
+					<h:outputText value="#{produto.categoria.descricao}" />
 				</p:column>
 
 				<p:column headerText="Valor unitário">

@@ -7,28 +7,24 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import com.algaworks.pedidovenda.model.Categoria;
+import com.algaworks.pedidovenda.model.Produto;
 
-public class CategoriaRepository implements Serializable {
+public class ProdutoRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	EntityManager entityManager;
 
-	public Categoria buscarPorId(Long id) {
-		return entityManager.find(Categoria.class, id);
-	}
-
-	public List<Categoria> buscarTudo() {
+	public List<Produto> buscarTudo() {
 		EntityTransaction transaction = entityManager.getTransaction();
 
 		transaction.begin();
 
-		List<Categoria> categorias = entityManager.createQuery("from Categoria", Categoria.class).getResultList();
+		List<Produto> produtos = entityManager.createQuery("from Produto", Produto.class).getResultList();
 
 		transaction.commit();
 
-		return categorias;
+		return produtos;
 	}
 }

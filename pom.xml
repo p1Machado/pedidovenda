@@ -27,8 +27,8 @@
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.2.6.Final</version>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.3.4.Final</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->

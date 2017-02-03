@@ -1,16 +1,11 @@
 package com.algaworks.pedidovenda.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Categoria implements Serializable {
@@ -18,22 +13,15 @@ public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)  
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 	private String descricao;
 
-	@ManyToOne
-	@JoinColumn(name = "categoria_pai_id")
-	private Categoria categoriaPai;
-
-	@OneToMany(mappedBy = "categoriaPai", cascade = CascadeType.ALL)
-	private List<Categoria> subcategorias;
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -43,18 +31,6 @@ public class Categoria implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Categoria getCategoriaPai() {
-		return categoriaPai;
-	}
-
-	public void setCategoriaPai(Categoria categoriaPai) {
-		this.categoriaPai = categoriaPai;
-	}
-
-	public List<Categoria> getSubcategorias() {
-		return subcategorias;
 	}
 
 	@Override

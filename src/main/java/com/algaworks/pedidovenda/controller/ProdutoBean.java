@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import com.algaworks.pedidovenda.model.Categoria;
 import com.algaworks.pedidovenda.model.Produto;
 import com.algaworks.pedidovenda.repository.CategoriaRepository;
+import com.algaworks.pedidovenda.repository.ProdutoRepository;
 
 @Named
 @ViewScoped
@@ -23,30 +24,31 @@ public class ProdutoBean implements Serializable {
 	@Inject
 	EntityManager entityManager;
 
+	@Inject
+	private ProdutoRepository produtoRepository;
+
 	private Produto produto;
+
 	private List<Produto> produtos = new ArrayList<>();
 
 	@Inject
 	private CategoriaRepository categoriaRepository;
 
+	private Categoria categoria;
 
 	private List<Categoria> categorias = new ArrayList<>();
 
 	public ProdutoBean() {
 		produto = new Produto();
-
 	}
 
 	public void inicializar() {
-		categorias = listarCategorias();
+		produtos = produtoRepository.buscarTudo();
+		categorias = categoriaRepository.buscarTudo();
 	}
 
 	public Produto getProduto() {
 		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
 	}
 
 	public List<Produto> getProdutos() {
@@ -57,31 +59,31 @@ public class ProdutoBean implements Serializable {
 		return categorias;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void teste() {
+		System.out.println("\n" + this.categoria.toString());
+	}
+
 	public void salvar() {
+		produto.setCategoria(categoria);
+
 		EntityTransaction transaction = entityManager.getTransaction();
 
 		transaction.begin();
 
+		entityManager.persist(produto);
+
 		transaction.commit();
 
-		produtos.add(this.produto);
+		produtos.add(produto);
 
 		produto = new Produto();
-	}
-	/*
-	 * public double getPrecoProduto() { return
-	 * calculadora.calcular(this.valorUnitario, this.quantidadeEstoque); }
-	 */
-
-	public List<Categoria> listarCategorias() {
-		EntityTransaction transaction = entityManager.getTransaction();
-
-		transaction.begin();
-
-		categorias = categoriaRepository.buscarCategorias();
-
-		transaction.commit();
-
-		return categorias;
 	}
 }
